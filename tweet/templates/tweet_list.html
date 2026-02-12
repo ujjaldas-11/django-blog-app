@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tweet home
+{% endblock %}
+
+<!-- <title>Tweet home</title> -->
+
+{% block content %}
+<a class="btn btn-primary" href="{% url 'tweet_create' %}">Create a tweet</a>
+
+<div class="container row gap-3">
+    {% for tweet in tweets %}
+        <div class="card" style="width: 18rem;">
+            <img src{{ tweet.photo }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ tweet.title }}</h5>
+                <p class="card-text">{{ tweet.content }}</p>
+                <a href="#" class="btn btn-primary">Post Detials</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
