@@ -11,14 +11,18 @@ Tweet home
 
 <div class="container row gap-3">
     {% for tweet in tweets %}
-        <div class="card m-5" style="width: 18rem;">
-            <img src="{{ tweet.photo.url }}" class="card-img-top h-50"  alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ tweet.title }}</h5>
-                <p class="card-text">{{ tweet.content }}</p>
-                <a href="#" class="btn btn-warning">Post Detials</a>
-            </div>
+    <div class="card" style="width: 18rem;">
+        {% if tweet.photo %}
+            <img src="{{ tweet.photo.url }}" class="card-img-top mt-2" height="200" width="400" alt="{{ tweet.title }}">
+        {% endif %}
+        <div class="card-body">
+            <p class="card-text">{{ tweet.content }}</p>
         </div>
+        <div class="mb-2">
+            <a href="" class="btn btn-warning">Edit Tweet</a>
+            <a href="" class="btn btn-danger">Delete Tweet</a>
+        </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

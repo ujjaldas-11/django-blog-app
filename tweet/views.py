@@ -10,6 +10,8 @@ def tweet_list(request):
     tweets = Tweet.objects.all()
     return render(request, 'tweet_list.html', {'tweets': tweets})
 
+
+
 def create_tweet(request):
     if request.method == 'POST':
         form = TweetForm(request.POST, request.FILES)
@@ -22,7 +24,9 @@ def create_tweet(request):
         form = TweetForm()
     return render(request, 'tweet_form.html', {'form': form})
 
-def update_tweet(request):
+
+
+def update_tweet(request, tweet_id):
     tweet= get_object_or_404(Tweet, pk=tweet_id, user=request.user)
 
     if request.method == 'POST':
