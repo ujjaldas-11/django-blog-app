@@ -7,5 +7,13 @@
 <!-- <title>Tweet home</title> -->
 
 {% block content %}
-    <h1 class="text-center mt-5">Hello from index.html</h1>
+    <h1 class="text-center mt-5">Are you sure, you want to Delete this tweet?</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger"> Delete</button>
+        <a href="{% url 'tweet_list' %}" class="btn btn-success">
+            Cencel
+        </a>
+    </form>
 {% endblock %}
