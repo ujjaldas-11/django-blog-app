@@ -9,14 +9,15 @@ Tweet home
 {% block content %}
 <a class="btn btn-primary m-2" href="{% url 'create_tweet' %}">Create a tweet</a>
 
-<div class="container row gap-3">
+<div class="container row gap-3 m-2" style="display:flex; justify-content: left; align-items: center;">
     {% for tweet in tweets %}
-    <div class="card" style="width: 18rem;">
+    <div class="card " style="width: 18rem;">
         {% if tweet.photo %}
             <img src="{{ tweet.photo.url }}" class="card-img-top mt-2" height="200" width="400" alt="{{ tweet.title }}">
         {% endif %}
         <div class="card-body">
-            <p class="card-text">{{ tweet.content }}</p>
+            <p class="card-text" >{{ tweet.title }}</p>
+            <p style="color: rgb(92, 83, 83);">Author: {{ tweet.user.username }}</p>
         </div>
         <div class="mb-2">
             <a href="{% url 'edit-tweet' tweet.pk %}" class="btn btn-warning">✏️ Edit</a>
