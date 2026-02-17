@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tweet
 from .forms import TweetForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout
+from django.contrib.auth import login
 
 def index(request):
     return render(request, 'index.html')
@@ -61,7 +61,7 @@ def register(request):
             user.save()
             login(request, user)
             return redirect('tweet_list')
-            
+
     else:
         form = UserRegistrationForm()
 
