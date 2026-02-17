@@ -9,9 +9,9 @@ Tweet home
 {% block content %}
 <a class="btn btn-primary m-2" href="{% url 'create_tweet' %}">Create a tweet</a>
 
-<div class="container row gap-3 m-2" style="display:flex; justify-content: left; align-items: center;">
+<div class="container row gap-3 mb-4" style="display:flex; justify-content: space-around; align-items: center;">
     {% for tweet in tweets %}
-    <div class="card " style="width: 18rem;">
+    <div class="card mb-2" style="width: 18rem;">
         {% if tweet.photo %}
             <img src="{{ tweet.photo.url }}" class="card-img-top mt-2" height="200" width="400" alt="{{ tweet.title }}">
         {% endif %}

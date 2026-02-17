@@ -61,6 +61,7 @@ def register(request):
             user.save()
             login(request, user)
             return redirect('tweet_list')
+            
     else:
         form = UserRegistrationForm()
 
