@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Tweet
 from .forms import TweetForm, UserRegistrationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
@@ -66,3 +67,32 @@ def register(request):
         form = UserRegistrationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
+def login_view(request):
+
+    if request.user.is_authenticated:
+        return redirect('tweet_list')
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, f'Wellcome back, {username}!')
+            return redirect('tweet_list')
+        else:
+            messages.error(request, 'Invalid credentials')
+
+    return render(request, 'login.html')
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.success(request, f'You have logged out.')
+    return redirect('tweet_list')    
+
