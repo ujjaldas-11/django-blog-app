@@ -14,7 +14,7 @@ def tweet_list(request):
     return render(request, 'tweet_list.html', {'tweets': tweets})
 
 
-@login_required
+@login_required(login_url='login')
 def create_tweet(request):
     if request.method == 'POST':
         form = TweetForm(request.POST, request.FILES)
@@ -28,7 +28,7 @@ def create_tweet(request):
     return render(request, 'tweet_form.html', {'form': form})
 
 
-@login_required
+@login_required(login_url='login')
 def update_tweet(request, tweet_id):
     tweet= get_object_or_404(Tweet, pk=tweet_id, user=request.user)
 
@@ -42,7 +42,7 @@ def update_tweet(request, tweet_id):
         form = TweetForm(instance=tweet)  
     return render(request, 'tweet_form.html', {'form': form})
 
-@login_required
+@login_required(login_url='login')
 def delete_tweet(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id, user=request.user)
 
@@ -90,9 +90,9 @@ def login_view(request):
     return render(request, 'login.html')
 
 
-@login_required
+@login_required(login_url='login')
 def logout_view(request):
     logout(request)
     messages.success(request, f'You have logged out.')
-    return redirect('tweet_list')    
+    return redirect('tweet_list')                               
 
