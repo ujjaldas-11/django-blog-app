@@ -56,9 +56,19 @@
             </div>
           </div>
         </nav>
+
         <div class="container">
             {% if user.is_authenticated %}
               <h3 class="navbar-text text-center">Welcome, {{ user.username }}</h3>
+            {% endif %}
+            {% if messages %}
+              {% for message in messages %}
+                
+                  <div class="alert alert-{{ message.tags }}" role="alert">
+                      {{ message }}
+                      <!-- message - The text content of the message -->
+                  </div>
+              {% endfor %}
             {% endif %}
             {% block content %}
             {% endblock %}
