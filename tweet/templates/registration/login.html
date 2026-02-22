@@ -1,17 +1,18 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Login form</h2>
+<h2 style="text-align: center;">Login form</h2>
 
 
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button class="btn btn-primary">Login</button>
-</form>
-<p> Don't have an account?
-    <a href="{% url 'register' %}">Register here</a>
-</p>
+<div style="width: 100%;  display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <form method="POST" class="card" style="width: 20rem; padding: 2rem; ">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button class="btn btn-primary">Login</button>
+    </form>
+    <p> Don't have an account?
+        <a href="{% url 'register' %}">Register here</a>
+    </p>
+</div>
 {% endblock %}

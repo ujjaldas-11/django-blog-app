@@ -30,6 +30,7 @@ from rest_framework_simplejwt.views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tweet.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('api-auth/', include('rest_framework.urls')),
 
     path('api/token/', TokenObtainPairView.as_view, name='token_obtain_pair'),

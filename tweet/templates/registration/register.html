@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>Register form</h2>
+<h2 style="text-align: center;">Register form</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button class="btn btn-primary" type="submit">Register</button>
-</form>
+<div style="width: 100%;  display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <form method="POST" class="card" style="width: 35rem; padding: 1rem;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
 {% endblock %}
