@@ -37,7 +37,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://' + host for host in os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
@@ -98,7 +98,7 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKEN': True,
+    'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
@@ -200,6 +200,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] if os.path.exists(STATIC_DIR) else []
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
